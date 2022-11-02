@@ -21,3 +21,5 @@ catch (PDOException $error)
 {
     echo "<br> ERROR:" . $error->getMessage();
 }
+
+?>

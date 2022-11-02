@@ -9,8 +9,8 @@ try
 {
     $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
 
-    $sql_structure = file_get contents("structure.sql");
-    $sql_content = file_get contents("content.sql");
+    $sql_structure = file_get_contents("structure.sql");
+    $sql_content = file_get_contents("content.sql");
 
     $connection->exec($sql_structure);
     $connection->exec($sql_content);

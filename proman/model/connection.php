@@ -1,0 +1,19 @@
+<?php
+
+function db_connect()
+{
+    try
+    {
+        require "config.php";
+
+        $connection = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
+    }
+    catch (PDOException $err)
+    {
+        echo "Database connection error. <br>" . $err->getMessade()
+        exit;
+    }
+    return $connectionM
+}
+
+?>

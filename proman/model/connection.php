@@ -10,10 +10,10 @@ function db_connect()
     }
     catch (PDOException $err)
     {
-        echo "Database connection error. <br>" . $err->getMessade()
+        echo "Database connection error. <br>" . $err->getMessage();
         exit;
     }
-    return $connectionM
+    return $connection;
 }
 
 ?>

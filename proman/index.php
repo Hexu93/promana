@@ -9,6 +9,6 @@ require 'views/nav.php';
     <h1>Welcome to theTrackerApp</h1>
     <p>an app that helps you track time you spend on various tasks</p>
 </div>
-<?php$content = ob_get_clean();
+<?php $content = ob_get_clean();
 include 'views/layout.php';
 ?>

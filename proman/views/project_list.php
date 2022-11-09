@@ -22,7 +22,7 @@ ob_start();
     <ul>
         <?php foreach ($projects as $project) : ?>
             <li>
-                <?php echo $project["title"] ?>
+                <?php echo $project["title"]; ?>
             </li>
         <?php endforeach; ?>
     </ul>
@@ -30,5 +30,5 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-include 'layout.php'
+include 'layout.php';
 ?>

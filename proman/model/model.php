@@ -53,7 +53,9 @@ function get_all_tasks()
     {
         global $connection;
 
-        $sql = 'SELECT * FROM tasks ORDER BY title';
+        $sql = 'SELECT *, DATE_FORMAT(date_task,'%d/%m/%Y') AS ttime, projects.title 
+        FROM tasks inner join projects on tasks.project_id = projects.id
+        ORDER BY date_task asc ';
         $tasks = $connection->query($sql);
 
         return $tasks;
@@ -71,7 +73,7 @@ function get_all_tasks_count()
     {
         global $connection;
 
-        $sql = 'SELECT COUNT(id) AS nb FROM tasks';
+        $sql = 'SELECT COUNT(title) AS nb FROM tasks';
         $statement = $connection->query($sql)->fetch();
 
         $taskCount = $statement['nb'];

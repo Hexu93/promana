@@ -73,7 +73,7 @@ function get_all_tasks_count()
     {
         global $connection;
 
-        $sql = 'SELECT COUNT(title) AS nb FROM tasks';
+        $sql = 'SELECT COUNT(id) AS nb FROM tasks';
         $statement = $connection->query($sql)->fetch();
 
         $taskCount = $statement['nb'];

@@ -53,7 +53,7 @@ function get_all_tasks()
     {
         global $connection;
 
-        $sql = 'SELECT *, DATE_FORMAT(date_task,'%d/%m/%Y') AS ttime, projects.title 
+        $sql = 'SELECT *, DATE_FORMAT(date_task,"%d/%m/%Y") AS ttime, projects.title 
         FROM tasks inner join projects on tasks.project_id = projects.id
         ORDER BY date_task asc ';
         $tasks = $connection->query($sql);

@@ -2,6 +2,7 @@
 $title = 'Projects list';
 
 ob_start();
+require 'nav.php';
 ?>
 
 <div class="container">

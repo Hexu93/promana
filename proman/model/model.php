@@ -41,3 +41,48 @@ function get_all_projects_count()
         exit;
     }
 }
+
+
+
+
+
+
+function get_all_tasks()
+{
+    try
+    {
+        global $connection;
+
+        $sql = 'SELECT * FROM tasks ORDER BY title';
+        $tasks = $connection->query($sql);
+
+        return $tasks;
+    }
+    catch (PDOException $err)
+    {
+        echo $sql . "<br>" . $err->getMessage();
+        exit;
+    }
+}
+
+function get_all_tasks_count()
+{
+    try
+    {
+        global $connection;
+
+        $sql = 'SELECT COUNT(id) AS nb FROM tasks';
+        $statement = $connection->query($sql)->fetch();
+
+        $taskCount = $statement['nb'];
+
+        return $taskCount;
+    }
+    catch (PDOException $err)
+    {
+        echo $sql . "<br>" . $err->getMessage();
+        exit;
+    }
+}
+
+?>

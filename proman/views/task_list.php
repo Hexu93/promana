@@ -8,10 +8,10 @@ require 'nav.php';
 <div class="container">
     <p><a href="../">Go Home</a></p>
 
-    <h1><?php echo $title . " (" . $taskCount . ")" ?></h1>
+    <h1><?php echo $title . " (" . $tasksCount . ")" ?></h1>
 
     <!-- No data -->
-    <?php if ($taskCount == 0)
+    <?php if ($tasksCount == 0)
     { ?>
 
     <div>
@@ -23,7 +23,7 @@ require 'nav.php';
     <ul>
         <?php foreach ($tasks as $task) : ?>
             <li>
-                <?php echo $task["title"]; ?>
+                <?php echo $tasks["title"]; ?>
             </li>
         <?php endforeach; ?>
     </ul>

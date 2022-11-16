@@ -53,7 +53,7 @@ function get_all_tasks()
     {
         global $connection;
 
-        $sql = 'SELECT *, DATE_FORMAT(date_task,"%d/%m/%Y") AS ttime, projects.title 
+        $sql = 'SELECT *, DATE_FORMAT(date_task,"%d/%m/%Y") AS ttime, projects.title AS project
         FROM tasks inner join projects on tasks.project_id = projects.id
         ORDER BY date_task asc ';
         $tasks = $connection->query($sql);
@@ -87,4 +87,27 @@ function get_all_tasks_count()
     }
 }
 
+
+// -- ADD PROJECT ---
+
+function add_project($title, $category)
+{
+    try
+    {
+        global $connection;
+        $sql = 'INSERT INTO projects(title, category) VALUES(?, ?)';
+
+        $statement = $connection->prepare($sql);
+        $new_project = array($title, $category);
+
+        $affectedLines = $statement->execute($new_project);
+
+        return $affectedLines;
+    }
+    catch (PDOException $err)
+    {
+        echo $sql . "<br>" . $err->getMessage();
+        exit;
+    }
+}
 ?>

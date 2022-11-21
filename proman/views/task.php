@@ -2,8 +2,10 @@
 $title = 'Add a task to a project';
 
 require_once "../controller/task.php";
+
+require "nav.php";
+//require_once "../controller/task.php";
 ob_start();
-require_once "nav.php";
 
 
 ?>

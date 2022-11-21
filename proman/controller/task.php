@@ -2,6 +2,8 @@
 require_once "../model/model.php";
 require "common.php";
 
+$projects = get_all_projects();
+
 if(isset($_POST['submit']))
 {
     $title = escape(trim($_POST['title']));
@@ -13,7 +15,7 @@ if(isset($_POST['submit']))
     }
     else
     {
-        if(titleExists("projects", $title))
+        if(titleExists("task", $title))
         {
             $error_message ="I'm sorry, but looks like \"" . $title . "\" already exists";
         }
@@ -28,4 +30,4 @@ if(isset($_POST['submit']))
     
 }
 
-require "../views/project.php";
+require "../views/task.php";

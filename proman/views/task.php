@@ -1,8 +1,11 @@
 <?php
-$title = 'Add project';
+$title = 'Add a task to a project';
 
+require_once "../controller/task.php";
 ob_start();
-require "nav.php";
+require_once "nav.php";
+
+
 ?>
 
 <div class="container">
@@ -25,16 +28,20 @@ require "nav.php";
             <span>Title:</span>
             <strong><abbr title="required">*</abbr></strong>
         </label>
-        <input type="text" placeholder="New project" name="title" id="title" required>
-        <label for="category">
-            <span>Category:</span>
+        <input type="text" placeholder="New task" name="title" id="title" required>
+        <label for="project">
+            <span>Project of the task:</span>
             <strong><abbr title="required">*</abbr></strong>
         </label>
-        <select name="category" id="category" required>
-            <option value="">Select a category</option>
-            <option value="Professional">Professional</option>
-            <option value="Personal">Personal</option>
-            <option value="School">School</option>
+        <select name="project" id="project" required>
+            <option value="">Select the project the task is linked to:</option>
+            <?php foreach ($projects as $project) { ?>
+
+            <option value= "<?php $project['id']  ?>" >
+                <?php echo $project['title']; ?>
+            </option>
+            <?php } ?>
+            <?php //endforeach; ?>
         </select>
         <input type="submit" name="submit" value="Add">
     </form>
@@ -43,4 +50,6 @@ require "nav.php";
 <?php
 $content = ob_get_clean();
 include 'layout.php';
+
+
 ?>

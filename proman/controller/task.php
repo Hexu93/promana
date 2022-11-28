@@ -11,9 +11,9 @@ if(isset($_POST['submit']))
     $time = escape($_POST['time']);
     $project_id = escape($_POST['project_id']);
 
-    if(empty($title) || empty($project_id))
+    if(empty($title) || empty($project_id) || empty($date) || empty($time))
     {
-        $error_message ="Title or project empty";
+        $error_message ="Please fill all fields";
     }
     else
     {

@@ -3,7 +3,7 @@ $title = 'Add a task to a project';
 
 require_once "../controller/task.php";
 
-require "nav.php";
+require_once "nav.php";
 //require_once "../controller/task.php";
 ob_start();
 
@@ -35,16 +35,31 @@ ob_start();
             <span>Project of the task:</span>
             <strong><abbr title="required">*</abbr></strong>
         </label>
-        <select name="project" id="project" required>
+        <select name="project_id" id="project_id" required>
             <option value="">Select the project the task is linked to:</option>
             <?php foreach ($projects as $project) { ?>
 
-            <option value= "<?php $project['id']  ?>" >
+            <option value= "<?php echo $project['id']  ?>" 
+            <?php if ($project === $project['id']) {echo 'selected';} ?> >
                 <?php echo $project['title']; ?>
             </option>
             <?php } ?>
-            <?php //endforeach; ?>
+            <?php //end foreach; ?>
         </select>
+
+        <label for="date">
+            <span> Date:</span>
+        </label>
+        <input type="date" name="date" id="date" required>
+
+        <label for="time">
+            <span> Time estimated for task: </span>
+        </label>
+        <input type="number" placeholder="0" name="time" id="time"  required>
+
+        <label for="submit">
+            <span></span>
+        </label>
         <input type="submit" name="submit" value="Add">
     </form>
 </div>

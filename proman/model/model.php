@@ -132,4 +132,28 @@ function add_project($title, $category)
         exit;
     }
 }
+
+
+// --- ADD TASKS ---
+function add_task($title, $date, $time, $project_id)
+{
+    try
+    {
+        global $connection;
+        $sql = 'INSERT INTO tasks(title, date_task, time_task, project_id) VALUES(?, ?, ?, ?)';
+
+        $statement = $connection->prepare($sql);
+        $new_task = array($title, $date, $time, $project_id);
+
+        $affectedLines = $statement->execute($new_task);
+
+        return $affectedLines;
+    }
+    catch (PDOException $err)
+    {
+        echo $sql . "<br>" . $err->getMessage();
+        exit;
+    }
+}
+
 ?>

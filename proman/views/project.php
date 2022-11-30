@@ -42,11 +42,11 @@ require "nav.php";
         <select name="category" id="category" required>
             <option value="">Select a category</option>
             <option value="Professional"
-            <?php if($category == "Professional") {echo ' selected'} ?>>Professional</option>
+            <?php if($category == "Professional") {echo ' selected';} ?>>Professional</option>
             <option value="Personal"
-            <?php if($category == "Personal") {echo ' selected'} ?>>Personal</option>
+            <?php if($category == "Personal") {echo ' selected';} ?>>Personal</option>
             <option value="School"
-            <?php if($category == "School") {echo ' selected'} ?>>School</option>
+            <?php if($category == "School") {echo ' selected';} ?>>School</option>
         </select>
         <?php if (!empty($id))
         { ?>

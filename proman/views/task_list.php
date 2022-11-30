@@ -1,4 +1,5 @@
 <?php
+require "common.php";
 $title = 'Task list';
 
 ob_start();
@@ -23,7 +24,10 @@ require 'nav.php';
     <ul>
         <?php foreach ($tasks as $task) : ?>
             <li>
-                <?php echo "Title: " . $task["title"] . " (Date: " . $task["ttime"] . ", Project: " . $task["project"] . ")"; ?>
+                <a href="../controller/task.php?id=<?php echo $task['id']; ?>">
+                   <?php echo escape($task["title"]) ?>
+                </a>
+                <?php echo " (Date: " . $task["ttime"] . ", Project: " . $task["project"] . ")"; ?>
             </li>
         <?php endforeach; ?>
     </ul>

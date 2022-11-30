@@ -1,12 +1,17 @@
 <?php
-$title = 'Add a task to a project';
+if (!empty($_GET['id']))
+{
+    $title = 'Update task';
+}
+else
+{
+    $title = 'Add task';
+}
 
-require_once "../controller/task.php";
 
-require_once "nav.php";
-//require_once "../controller/task.php";
+
 ob_start();
-
+require "nav.php";
 
 ?>
 
@@ -26,14 +31,16 @@ ob_start();
     ?>
 
     <form method="post">
+
         <label for="title">
             <span>Title:</span>
             <strong><abbr title="required">*</abbr></strong>
         </label>
-        <input type="text" placeholder="New task" name="title" id="title" required>
+        <input type="text" placeholder="New task" name="title" id="title" 
+        value ="<?php echo $task_title; ?>" required>
+
         <label for="project">
             <span>Project of the task:</span>
-            <strong><abbr title="required">*</abbr></strong>
         </label>
         <select name="project_id" id="project_id" required>
             <option value="">Select the project the task is linked to:</option>
@@ -50,17 +57,22 @@ ob_start();
         <label for="date">
             <span> Date:</span>
         </label>
-        <input type="date" name="date" id="date" required>
+        <input type="date" name="date" id="date" value="<?php echo $tDate; ?>" required>
 
         <label for="time">
             <span> Time estimated for task: </span>
         </label>
-        <input type="number" placeholder="0" name="time" id="time"  required>
-
+        <input type="number" placeholder="0" name="time" id="time" value="<?php echo $tTime; ?>" required>
+        
         <label for="submit">
             <span></span>
         </label>
-        <input type="submit" name="submit" value="Add">
+        <?php if(!empty($taskID))
+        { ?>
+            <input type="hidden" name="id" value="<?php echo $taskID ?>"/>
+        <?php } ?>
+                
+        <input type="submit" name="submit" value="<?php echo (isset($taskID) and (!empty($taskID))) ? "Update" : "Add"; ?>">
     </form>
 </div>
 

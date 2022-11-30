@@ -1,8 +1,10 @@
 <?php
+require "common.php";
 $title = 'Projects list';
 
 ob_start();
 require 'nav.php';
+require_once 
 ?>
 
 <div class="container">
@@ -23,7 +25,9 @@ require 'nav.php';
     <ul>
         <?php foreach ($projects as $project) : ?>
             <li>
-                <?php echo $project["title"]; ?>
+                <a href="--/controller/project.php?id=<?php echo $project['id']; ?>">
+                <?php echo escape($project["title"]) ?>
+                </a>
             </li>
         <?php endforeach; ?>
     </ul>

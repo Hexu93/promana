@@ -112,15 +112,27 @@ function get_all_tasks_count()
 
 // -- ADD PROJECT ---
 
-function add_project($title, $category)
+function add_project($title, $category, $id)
 {
     try
     {
         global $connection;
-        $sql = 'INSERT INTO projects(title, category) VALUES(?, ?)';
 
+        if($id)
+        {
+            $sql = 'UPDATE projects SET title = ?, category = ? WHERE id = ?';
+        }
+        else
+        {
+            $sql = 'INSERT INTO projects(title, category) VALUES(?, ?)';
+        }
         $statement = $connection->prepare($sql);
         $new_project = array($title, $category);
+
+        if($id)
+        {
+            $new_project = array($title, $category, $id);
+        }
 
         $affectedLines = $statement->execute($new_project);
 
@@ -156,4 +168,29 @@ function add_task($title, $date, $time, $project_id)
     }
 }
 
+// --- GET STUFF FROM DB ---
+function get_project($id)
+{
+    try
+    {
+        global $connection;
+
+        $sql = 'SELECT * FROM projects WHERE id = ?';
+        $project = $connection->prepare($sql);
+        $project->bindValue(1, $id, PDO::PARAM_INT);
+        $project->execute();
+
+        return $project->fetch();
+    }
+    catch(PDOException $execption)
+    {
+        echo $sql . "<br>" . $execption->getMessage();
+        exit;
+    }
+}
+
+function get_task($taskID)
+{
+    
+}
 ?>

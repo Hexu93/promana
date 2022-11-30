@@ -32,4 +32,4 @@ if(isset($_POST['submit']))
     
 }
 
-require_once "../views/task.php";
+require "../views/task.php";

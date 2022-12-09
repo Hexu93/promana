@@ -147,16 +147,27 @@ function add_project($title, $category, $id)
 
 
 // --- ADD TASKS ---
-function add_task($title, $date, $time, $project_id)
+function add_task($title, $date, $time, $project_id, $taskID)
 {
     try
     {
         global $connection;
-        $sql = 'INSERT INTO tasks(title, date_task, time_task, project_id) VALUES(?, ?, ?, ?)';
 
+        if($taskID)
+        {
+            $sql = 'UPDATE tasks SET title = ?, date_task = ?, time_task = ?, project_id = ? where id = ?' ;
+        }
+        else
+        {
+            $sql = 'INSERT INTO tasks(title, date_task, time_task, project_id) VALUES(?, ?, ?, ?)';
+        }
         $statement = $connection->prepare($sql);
         $new_task = array($title, $date, $time, $project_id);
 
+        if($taskID)
+        {
+            $new_task = array($title, $date, $time, $project_id, $taskID)
+        }
         $affectedLines = $statement->execute($new_task);
 
         return $affectedLines;
@@ -191,6 +202,20 @@ function get_project($id)
 
 function get_task($taskID)
 {
-    
+    try
+    {
+        global $connection;
+        $sql = /* TODO */;
+        $task = $connection->prepare($sql);
+        $task-bindValue(1, $taskID, PDO::PARAM_INT);
+        $task->execute();
+
+        return $task->fetch();
+    }
+    catch(PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
 }
 ?>

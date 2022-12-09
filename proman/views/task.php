@@ -37,7 +37,7 @@ require "nav.php";
             <strong><abbr title="required">*</abbr></strong>
         </label>
         <input type="text" placeholder="New task" name="title" id="title" 
-        value ="<?php echo $task_title; ?>" required>
+        value ="<?php echo $title; ?>" required>
 
         <label for="project">
             <span>Project of the task:</span>

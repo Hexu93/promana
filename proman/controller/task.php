@@ -3,9 +3,19 @@ require_once "../model/model.php";
 require "common.php";
 
 $projects = get_all_projects();
+$task_title = '';
+$date = '';
+$time = '';
+$project_id = '';
 
 if(isset($_POST['submit']))
 {
+    $taskID = null;
+    if(isset($_POST['id']))
+    {
+        $taskID = $_POST['id'];
+    }
+
     $title = escape(trim($_POST['title']));
     $date = escape($_POST['date']);
     $time = escape($_POST['time']);
@@ -17,20 +27,30 @@ if(isset($_POST['submit']))
     }
     else
     {
-        if(titleExists("tasks", $title))
+        if(titleExists("tasks", $title) && $taskID == null)
         {
             $error_message ="I'm sorry, but looks like \"" . $title . "\" already exists";
         }
-
         else
         {
-        add_task($title, $date, $time, $project_id);
-        header('Refresh:4; url=task_list.php' );
-        $confirm_message ='Project added successfully! Moving to task list...';
+            if(add_task($title, $date, $time, $project_id, $taskID))
+            {
+                header('Refresh:4; url=task_list.php' );
+                if(!empty($taskID))
+                {
+                    $confirm_message = escape($title) . ' updated successfully! Moving to task list...';
+                }
+                else
+                {
+                    $confirm_message = escape($title) . ' added successfully! Moving to task list...';
+                }
+            }
+            else
+            {
+                $error_message = "There's something wrong";
+            }
         }
-    }
-    
-    // TODO V8 K3 V2
+    }    
 }
 
 require "../views/task.php";

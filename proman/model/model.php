@@ -166,7 +166,7 @@ function add_task($title, $date, $time, $project_id, $taskID)
 
         if($taskID)
         {
-            $new_task = array($title, $date, $time, $project_id, $taskID)
+            $new_task = array($title, $date, $time, $project_id, $taskID);
         }
         $affectedLines = $statement->execute($new_task);
 
@@ -205,7 +205,8 @@ function get_task($taskID)
     try
     {
         global $connection;
-        $sql = /* TODO */;
+
+        $sql = 'SELECT * FROM tasks WHERE id = ?';
         $task = $connection->prepare($sql);
         $task-bindValue(1, $taskID, PDO::PARAM_INT);
         $task->execute();
@@ -216,6 +217,17 @@ function get_task($taskID)
     {
         echo $sql . "<br>" . $exception->getMessage();
         exit;
+    }
+}
+
+// --- DELETE STUFF ---
+function delete_task($taskID)
+{
+    try
+    {
+        global $connection;
+
+        // TODO VAIHE 9 KOHTA 3 -> + PLUS Sama projekteille
     }
 }
 ?>

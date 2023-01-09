@@ -260,4 +260,16 @@ function delete_project($projectID)
         exit;
     }
 }
+
+function csv_projects($projects, $filename = "new.csv", $delimiter=";") {
+    header('Content-Type: application/csv');
+    header('Content-Disposition: attachment; filename="'.$filename.'";');
+
+    
+    $f = fopen('php://output', 'w');
+
+    foreach ($projects as $line) {
+        fputcsv($f, $line, $delimiter);
+    }
+} 
 ?>

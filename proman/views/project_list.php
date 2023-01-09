@@ -34,7 +34,7 @@ if(isset($confirm_message))
     <ul>
         <?php foreach ($projects as $project) : ?>
             <li>
-                <a href="--/controller/project.php?id=<?php echo $project['id']; ?>">
+                <a href="../controller/project.php?id=<?php echo $project['id']; ?>">
                 <?php echo escape($project["title"]) ?>
                 </a>
 

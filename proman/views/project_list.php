@@ -4,8 +4,17 @@ $title = 'Projects list';
 
 ob_start();
 require 'nav.php';
-require_once 
+if(isset($error_message))
+{
+    echo "<p class='message_error'>$error_message</p>";
+}
+
+if(isset($confirm_message))
+{
+    echo "<p class='message_ok'>$confirm_message</p>";
+}
 ?>
+
 
 <div class="container">
     <p><a href="../">Go Home</a></p>
@@ -28,6 +37,11 @@ require_once
                 <a href="--/controller/project.php?id=<?php echo $project['id']; ?>">
                 <?php echo escape($project["title"]) ?>
                 </a>
+
+                <form method="post">
+                    <input type="hidden" value="<?php echo $project['id'] ?>" name="delete">
+                    <input type="submit" value="Delete">
+                </form>
             </li>
         <?php endforeach; ?>
     </ul>

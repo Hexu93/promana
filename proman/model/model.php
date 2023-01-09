@@ -227,7 +227,37 @@ function delete_task($taskID)
     {
         global $connection;
 
-        // TODO VAIHE 9 KOHTA 3 -> + PLUS Sama projekteille
+        $sql = 'DELETE FROM tasks WHERE id = ?';
+        $task = $connection->prepare($sql);
+        $task->bindValue(1, $id, PDO::PARAM_INT);
+        $task->execute();
+        
+        return true;
+    }
+    catch (PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
+}
+
+function delete_project($projectID)
+{
+    try
+    {
+        global $connection;
+
+        $sql = 'DELETE FROM projects WHERE id = ?';
+        $project = $connection->prepare($sql);
+        $project->bindValue(1, $id, PDO::PARAM_INT);
+        $project->execute();
+        
+        return true;
+    }
+    catch (PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
     }
 }
 ?>

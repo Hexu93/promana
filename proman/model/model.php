@@ -261,15 +261,18 @@ function delete_project($projectID)
     }
 }
 
-function csv_projects($projects, $filename = "new.csv", $delimiter=";") {
-    header('Content-Type: application/csv');
-    header('Content-Disposition: attachment; filename="'.$filename.'";');
-
+function csv_projects($projects1, $delimiter=";") {
     
-    $f = fopen('php://output', 'w');
+    
+    
+    $f = fopen('file3.csv', 'w');
 
-    foreach ($projects as $line) {
+    foreach ($projects1 as $line) 
+    {
         fputcsv($f, $line, $delimiter);
     }
+
+    fclose($f);
+    
 } 
 ?>

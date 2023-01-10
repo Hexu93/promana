@@ -15,6 +15,14 @@ if(isset($_POST['delete']))
     }
 }
 
+if(isset($_POST['print']))
+{
+    $pro = get_all_projects();
+    
+
+    csv_projects($pro, $delimiter=";");
+}
+
 if(isset($_GET['error_message']))
 {
     $error_message = $_GET['error_message'];
@@ -26,8 +34,6 @@ else if(isset($_GET['confirm_message']))
 
 $projects = get_all_projects();
 $projectCount = get_all_projects_count();
-
-//$projects_csv = csv_projects($projects, $filename = "new.csv", $delimiter=";");
 
 require "../views/project_list.php";
 ?>

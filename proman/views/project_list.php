@@ -42,8 +42,14 @@ if(isset($confirm_message))
                     <input type="hidden" value="<?php echo $project['id'] ?>" name="delete">
                     <input type="submit" value="Delete">
                 </form>
+
+               
             </li>
         <?php endforeach; ?>
+
+        <form method="post">
+            <input type="submit" value="Print to file" name="print">
+        </form>
     </ul>
 </div>
 

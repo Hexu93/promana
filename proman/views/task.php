@@ -64,9 +64,19 @@ require "nav.php";
         </label>
         <input type="number" placeholder="0" name="time" id="time" value="<?php echo $tTime; ?>" required>
         
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <label for="image">
+                <span> Select image to upload: </span>
+            </label>
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
+
         <label for="submit">
             <span></span>
         </label>
+
+        
         <?php if(!empty($taskID))
         { ?>
             <input type="hidden" name="id" value="<?php echo $taskID ?>"/>

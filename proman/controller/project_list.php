@@ -17,10 +17,10 @@ if(isset($_POST['delete']))
 
 if(isset($_POST['print']))
 {
-    $pro = get_all_projects();
+    //$pro = get_all_projects();
     
 
-    csv_projects($pro, $delimiter=";");
+    csv_projects(/*$pro, $delimiter=";"*/);
 }
 
 if(isset($_GET['error_message']))

@@ -261,18 +261,34 @@ function delete_project($projectID)
     }
 }
 
-function csv_projects($projects1, $delimiter=";") {
+function csv_projects(/*$projects1, $delimiter=";"*/) {
     
-    
-    
-    $f = fopen('file3.csv', 'w');
-
-    foreach ($projects1 as $line) 
+    try
     {
-        fputcsv($f, $line, $delimiter);
+        global $connection;
+        $delimiter=";";
+    
+        $f = fopen('file3.csv', 'w');
+        $array = ['ID', 'Title', 'Related to'];
+    
+        fputcsv($f, $array , $delimiter);  
+        $sql = "SELECT * FROM projects";    
+        $query = $connection->query($sql); 
+        while($row = $query->fetch(PDO::FETCH_ASSOC))  
+        {  
+            fputcsv($f, $row, $delimiter);  
+        }  
+
+        fclose($f);
+
+        return true;
     }
 
-    fclose($f);
+    catch (PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
     
 } 
 ?>

@@ -261,6 +261,8 @@ function delete_project($projectID)
     }
 }
 
+// --- Output from database ---
+
 function csv_projects(/*$projects1, $delimiter=";"*/) {
     
     try
@@ -291,4 +293,28 @@ function csv_projects(/*$projects1, $delimiter=";"*/) {
     }
     
 } 
+
+function sqlToJSON() {
+    try
+    {
+        global $connection;
+        $sql = "SELECT * FROM projects";
+        $query = $connection->query($sql);
+        $emparray = array();
+        while($row = $query->fetch(PDO::FETCH_ASSOC))
+        {
+            $emparray[] = $row;
+        }
+        echo json_encode($emparray);
+
+        return true;
+    }
+    catch (PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
+}
+
+
 ?>

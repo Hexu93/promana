@@ -316,5 +316,23 @@ function sqlToJSON() {
     }
 }
 
+// --- SEARCH STUFF ---
+
+function search($title)
+{
+    try
+    {
+        global $connection;
+        $sql = "SELECT * FROM projects WHERE title LIKE '%" . $title . "%'";
+        $results = $connection->query($sql);
+
+        return $results;
+    }
+    catch (PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
+}
 
 ?>

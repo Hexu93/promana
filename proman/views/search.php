@@ -20,9 +20,19 @@ if(isset($confirm_message))
     <p><a href="../">Go Home</a></p>
 
     <h1><?php echo $title ?></h1>
-    <ul>
-        
-    </ul>
+            
+    <form method="post">
+    
+        <label for="title">
+            <span>Title:</span>
+            <strong><abbr title="required">*</abbr></strong>
+        </label>
+        <input type="text" placeholder="Title" name="title" id="title" required>
+    
+        <input type="submit" name="submit" value=" Find " />
+ 
+    </form>
+    
 </div>
 
 <?php

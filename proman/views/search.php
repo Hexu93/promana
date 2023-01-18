@@ -21,24 +21,7 @@ if(isset($confirm_message))
 
     <h1><?php echo $title ?></h1>
     <ul>
-        <?php foreach ($projects as $project) : ?>
-            <li>
-                <a href="../controller/project.php?id=<?php echo $project['id']; ?>">
-                <?php echo escape($project["title"]) ?>
-                </a>
-
-                <form method="post">
-                    <input type="hidden" value="<?php echo $project['id'] ?>" name="delete">
-                    <input type="submit" value="Delete">
-                </form>
-
-               
-            </li>
-        <?php endforeach; ?>
-
-        <form method="post">
-            <input type="submit" value="Print to file" name="print">
-        </form>
+        
     </ul>
 </div>
 

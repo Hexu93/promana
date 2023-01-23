@@ -1,5 +1,5 @@
 <?php
-require "common.php";
+
 $title = 'Search projects';
 
 ob_start();
@@ -24,15 +24,29 @@ if(isset($confirm_message))
     <form method="post">
     
         <label for="title">
-            <span>Title:</span>
-            <strong><abbr title="required">*</abbr></strong>
+            <span>Title:</span>            
         </label>
-        <input type="text" placeholder="Title" name="title" id="title" required>
+        <input type="text" placeholder="Title" name="title" id="title">
+        <label for="category">
+            <span>Category:</span>            
+        </label>
+        <input type="text" placeholder="Category" name="category" id="category">
     
-        <input type="submit" name="submit" value=" Find " />
+        <input type="submit" name="submit" value=" Find " >
  
     </form>
-    
+    <ul>
+        <?php foreach ($results as $project) : ?>
+            <li>
+                <a href="../controller/project.php?id=<?php echo $project['id']; ?>">
+                <?php echo escape($project["title"]) ?>
+                </a>
+
+                
+               
+            </li>
+        <?php endforeach; ?>        
+    </ul>
 </div>
 
 <?php

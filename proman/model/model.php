@@ -318,13 +318,32 @@ function sqlToJSON() {
 
 // --- SEARCH STUFF ---
 
-function search($title)
+function searchT($title)
 {
     try
     {
         global $connection;
-        $sql = "SELECT * FROM projects WHERE title LIKE '%" . $title . "%'";
+        $sql = "SELECT * FROM projects WHERE title LIKE '%" . $title . "%' ORDER BY title";
         $results = $connection->query($sql);
+
+        return $results;
+    }
+    catch (PDOException $exception)
+    {
+        echo $sql . "<br>" . $exception->getMessage();
+        exit;
+    }
+}
+
+function searchC($category)
+{
+    try
+    {
+        global $connection;
+        $sql = "SELECT * FROM projects WHERE category LIKE '%" . $category . "%' ORDER BY title";
+        $results = $connection->query($sql);
+
+
 
         return $results;
     }

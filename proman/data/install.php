@@ -15,7 +15,7 @@ try
     $connection->exec($sql_structure);
     $connection->exec($sql_content);
 
-    echo "<p>Database created and populates successfully. <br><a ref='../'>Home</a></p>";
+    echo "<p>Database created and populated successfully. <br><a href='../'>Home</a></p>";
 }
 catch (PDOException $error)
 {
